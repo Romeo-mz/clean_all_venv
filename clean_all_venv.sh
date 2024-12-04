@@ -1,5 +1,7 @@
 #! bin/bash
 #brew install zenity
+#brew install pipreqs
+
 directory_clean=$(zenity --file-selection --directory --title="Select a directory where you want to clean all venv")
 
 echo "Cleaning all venv in $directory_clean"
@@ -14,7 +16,7 @@ do
     if [ $yn == "y" ]; then
         echo "Creating requirements.txt file for $directory"
         cd $directory
-        pip freeze > ../requirements.txt
+        pipreqs .
         echo "requirements.txt file created for $directory"
     fi
     read -p "Are you sure to delete this directory : $directory y or n : " yn
@@ -22,5 +24,4 @@ do
         echo "Deleting $directory"
 
     fi
-    echo "Not deleting $directory"
 done
