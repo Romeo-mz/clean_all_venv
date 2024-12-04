@@ -4,3 +4,4 @@ directory_clean=$(zenity --file-selection --directory --title="Select a director
 
 echo "Cleaning all venv in $directory_clean"
 
+find $directory_clean -type d -name "venv" -o -name ".venv"
