@@ -9,7 +9,14 @@ directory_list=$(find $directory_clean -type d -name "venv" -o -name ".venv")
 echo "List of venv directories: $directory_list"
 
 for directory in $directory_list;
-do
+do  
+    read -p "Do you want to create requirements.txt file for this directory : $directory y or n : " yn
+    if [ $yn == "y" ]; then
+        echo "Creating requirements.txt file for $directory"
+        cd $directory
+        pip freeze > ../requirements.txt
+        echo "requirements.txt file created for $directory"
+    fi
     read -p "Are you sure to delete this directory : $directory y or n : " yn
     if [ $yn == "y" ]; then
         echo "Deleting $directory"
