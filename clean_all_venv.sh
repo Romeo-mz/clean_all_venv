@@ -4,4 +4,16 @@ directory_clean=$(zenity --file-selection --directory --title="Select a director
 
 echo "Cleaning all venv in $directory_clean"
 
-find $directory_clean -type d -name "venv" -o -name ".venv"
+directory_list=$(find $directory_clean -type d -name "venv" -o -name ".venv")
+
+echo "List of venv directories: $directory_list"
+
+for directory in $directory_list;
+do
+    read -p "Are you sure to delete this directory : $directory y or n : " yn
+    if [ $yn == "y" ]; then
+        echo "Deleting $directory"
+
+    fi
+    echo "Not deleting $directory"
+done
