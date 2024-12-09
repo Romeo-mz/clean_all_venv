@@ -23,9 +23,7 @@ do
             metadata_file="$dist_info/METADATA"
             name_info=$(grep -E "^Name: " $metadata_file)
             version_info=$(grep -E "^Version: " $metadata_file)
-
-            echo "$package_name==$package_version" >> "$requirements_file"
-        
+            echo "$name_info==$version_info" >> $directory/requirements.txt
         done
     fi
     
