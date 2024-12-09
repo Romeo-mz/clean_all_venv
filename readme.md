@@ -22,4 +22,4 @@ A Bash script to clean up Python virtual environments while preserving package i
 
 ## Author
 
-- [Michael Liut](
+- Me !
