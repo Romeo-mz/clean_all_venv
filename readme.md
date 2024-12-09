@@ -1,4 +1,4 @@
-# Clean All Venv
+# Cleanup All Venv
 
 A Bash script to clean up Python virtual environments while preserving package information in requirements.txt files.
 
