@@ -21,8 +21,8 @@ do
         for dist_info in $dist_info_list;
         do 
             metadata_file="$dist_info/METADATA"
-            name_info=$(grep -E "^Name: " $metadata_file)
-            version_info=$(grep -E "^Version: " $metadata_file)
+            name_info=$(grep -E "^Name: " $metadata_file | awk '{print $2}')
+            version_info=$(grep -E "^Version: " $metadata_file | awk '{print $2}')
             echo "$name_info==$version_info" >> $directory/requirements.txt
         done
     fi
