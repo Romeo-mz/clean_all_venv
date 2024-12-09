@@ -26,10 +26,12 @@ do
             echo "$name_info==$version_info" >> $(dirname $directory)/requirements.txt
         done
     fi
+    echo "Done"
     
     read -p "Are you sure to delete this directory : $directory y or n : " yn
     if [ $yn == "y" ]; then
         echo "Deleting $directory"
         rm -rf $directory
     fi
+    echo "Done"
 done
