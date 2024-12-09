@@ -30,6 +30,6 @@ do
     read -p "Are you sure to delete this directory : $directory y or n : " yn
     if [ $yn == "y" ]; then
         echo "Deleting $directory"
-
+        rm -rf $directory
     fi
 done
