@@ -24,12 +24,9 @@ do
             name_info=$(grep -E "^Name: " $metadata_file)
             version_info=$(grep -E "^Version: " $metadata_file)
 
-            echo "$name_info" >> $directory/requirements.txt
-            echo "$version_info" >> $directory/requirements.txt
-
-        done
+            echo "$package_name==$package_version" >> "$requirements_file"
         
-
+        done
     fi
     
     read -p "Are you sure to delete this directory : $directory y or n : " yn
