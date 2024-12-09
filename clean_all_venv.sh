@@ -1,6 +1,5 @@
 #! bin/bash
 #brew install zenity
-#brew install pipreqs
 
 directory_clean=$(zenity --file-selection --directory --title="Select a directory where you want to clean all venv")
 
@@ -15,10 +14,24 @@ do
     read -p "Do you want to create requirements.txt file for this directory : $directory y or n : " yn
     if [ $yn == "y" ]; then
         echo "Creating requirements.txt file for $directory"
-        cd $directory
-        pipreqs .
-        echo "requirements.txt file created for $directory"
+        site_package_dir=$(find $directory -type d -name "site-packages")
+
+        dist_info_list=$(find $site_package_dir -name "*.dist-info")
+
+        for dist_info in $dist_info_list;
+        do 
+            metadata_file="$dist_info/METADATA"
+            name_info=$(grep -E "^Name: " $metadata_file)
+            version_info=$(grep -E "^Version: " $metadata_file)
+
+            echo "$name_info" >> $directory/requirements.txt
+            echo "$version_info" >> $directory/requirements.txt
+
+        done
+        
+
     fi
+    
     read -p "Are you sure to delete this directory : $directory y or n : " yn
     if [ $yn == "y" ]; then
         echo "Deleting $directory"
